@@ -1,0 +1,142 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[spanish]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{titling}
+
+\usepackage{tikz-uml}
+\usepackage{tikz}
+
+\title{%
+  Twilio Python \\
+  \large A Python module for communicating with \\
+  the Twilio API and generating TwiML} 
+
+
+
+
+\author{José Coronil Álvarez (joscoralv@alum.us.es) \\
+Emilio Manuel Vázquez Cruz (emivazcru@alum.us.es) \\
+Juan Prieto Fernández (juaprifer@alum.us.es) \\
+Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
+\date{}
+
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vfill
+  {\bfseries\Large
+      \thetitle
+  }    
+  \vfill
+  \includegraphics[width=12cm]{logo.png} % also works with logo.pdf
+  \vfill
+  \theauthor
+\end{titlepage}
+
+
+
+\section{Introducción}
+
+Aqui va la introduccion
+
+\section{Vista general}
+
+\section{Participantes}
+Los participantes más importante de Twilio Python que han trabajado en el proyecto son:
+\begin{itemize}
+  \item Sam Kimbrel \href{mailto:skimbrel@twilio.com}{skimbrel@twilio.com}
+  \item Evan Fossier \href{mailto:evan.fossier@gmail.com}{evan.fossier@gmail.com}
+  \item Kyle Conroy \href{mailto:kyle.j.conroy@gmail.com}{kyle.j.conroy@gmail.com}
+  \item Jingming Niu 
+  \item Ragil Prasetya 
+  
+  \end{itemize}
+  
+  \subsection*{Desarrolladores}
+  Son los responsables del desarrollo de las funciones base a partir de las cuales se autogenera el resto del codigo de la API.
+  \subsection*{Testers}
+  No hay un equipo dedicado al testing ya que todo los tests se generan automaticamente.
+  \subsection*{Soporte}
+  Se ocupan de mantener el código y resolver los issues de la comunidad, los más importantes son Kyle, revisa y acepta los pull request, y Ragil y Jing que  arreglan bugs y refactorizan el código
+\section{Vistas}
+
+\subsection{Vista de Contexto}
+
+  \begin{center}
+    \begin{tikzpicture}
+    
+      \umlsimpleclass{Twilio Python}
+
+
+      \begin{umlstate}[name=Desarrollo, x=-3, y=3]{Desarrollo}
+        Python
+      \end{umlstate}
+
+      \begin{umlstate}[name=Desarrolladores, x=0, y=-3]{Desarrolladores}
+        \umlsimpleclass{Twilio Python}
+      \end{umlstate}
+
+      \begin{umlstate}[name=Competencia, x=3, y=3]{Competencia}
+        SMS Gateway
+        CallHippo
+        Plivo
+        RingCentral
+      \end{umlstate}
+
+
+    \end{tikzpicture}
+
+    
+    
+  \end{center}
+
+
+
+
+  \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+  \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+  %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+  
+  %Shape: Diamond [id:dp25251746219733207] 
+  \draw   (300,111) -- (335,146) -- (300,181) -- (265,146) -- cycle ;
+  %Rounded Diagonal Corner Rect [id:dp11044097540572628] 
+  \draw   (100,132) .. controls (100,127.58) and (103.58,124) .. (108,124) -- (170,124) .. controls (170,124) and (170,124) .. (170,124) -- (170,156) .. controls (170,160.42) and (166.42,164) .. (162,164) -- (100,164) .. controls (100,164) and (100,164) .. (100,164) -- cycle ;
+  
+  
+  
+  
+  \end{tikzpicture}
+  
+  
+\subsection{Vista de Uso}
+\subsection{Vista Funcional}
+\subsection{Vista de Despliegue}
+\subsection{Vista de Desarrollo}
+
+
+
+\section{Puntos de variabilidad y extensión}
+\section{Analisis de atributos de calidad}
+\section{Sugerencias de mejora}
+\section{Contribuciones al proyecto}
+\section{Conclusiones}
+
+\bibliographystyle{alpha}
+\bibliography{sample}
+
+
+\end{document}
