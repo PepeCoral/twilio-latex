@@ -184,7 +184,7 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \section{Vistas}
 
 \subsection{Vista de Contexto}
-
+\hfill \\
 \begin{tikzpicture}
   \node[minimum height=1.5cm,minimum width=3cm,draw, align=center](Twilio) at (0,0){\includegraphics[width=2cm]{logo.png}};
 
@@ -192,23 +192,31 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Licencia) at (-2,4){\textbf{Licencia} \\ MIT License};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administración) at (6,3){\textbf{Administracion} \\
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administracion) at (6,3){\textbf{Administracion} \\
   \textbf{del Proyecto}\\ \includegraphics[width=2cm]{github-logo.png}};
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrollo) at (-6,3){\textbf{Desarrollo} \\ \\ \includegraphics[width=2cm]{python-logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Licencia} \\ MIT License};
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Autogeneradores} \\ OpenAPI
+  \\ Yoyodyne};
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Competencia) at (6,0){\textbf{Competencia} \\ Plivo\\Bandwidth\\CallHippo};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Dependencias) at (6,-3){\textbf{Licencia} \\ MIT License};
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Dependencias) at (-6,-3){\textbf{Dependencias} \\ Aiohttp\\ 
+  PyJWT\\Django \\ Pytest};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de Soporte) at (-6,-3){\textbf{Licencia} \\ MIT License};
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de Soporte) at (6,-3){\textbf{Herramientas de Soporte} \\ \includegraphics[width=2cm]{sonarcloud-logo.png}};
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrolladores) at (0,-4){\textbf{Desarrolladores} \\ Sam Kimbrel\\Evan Fossier\\Kyle Conroy\\Jingming Niu\\Ragil Prasetya};
 
-  \draw[thick,->] (Twilio.north) -- (Usuarios.south);
-  \draw[thick,->] (Twilio.north) -- (Licencia.south);
+  \draw[thick,->] (Twilio) -- (Usuarios);
+  \draw[thick,->] (Twilio) -- (Licencia);
+  \draw[thick,->] (Twilio) -- (Desarrollo);
+  \draw[thick,->] (Twilio) -- (Administracion);
+  \draw[thick,->] (Twilio) -- (Licencia);
+  \draw[thick,->] (Twilio) -- (Autogeneradores);
+  \draw[thick,->] (Twilio) -- (Competencia);
+  
 \end{tikzpicture}  
 
 \subsection{Vista de Escenarios}
