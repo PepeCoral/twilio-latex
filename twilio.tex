@@ -14,6 +14,7 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{titling}
 \usepackage{csquotes}
+\usepackage[shortcuts]{extdash}
 \usepackage[style=ieee,backend=biber]{biblatex}
 \usepackage{imakeidx}
 \usepackage{tikz}
@@ -117,12 +118,49 @@ enviar correos, mensajes SMS, mensajes de WhatsApp, etc.
 
 También mantiene librerías oficiales para numerosos lenguajes de programación
 que sirven como envoltorios para su API,
-ofreciendo una manera fácil e idiomática de enviar peticiones.
+ofreciendo una manera idiomática de enviar peticiones.
 Este documento sirve como una documentación de la arquitectura
 de una de esas librerías:
 \href{https://github.com/twilio/twilio-python}{twilio-python}.
 
 \section{Visión general}
+
+La API de Twilio sigue el estilo arquitectónico REST \cite{twilio-rest}.
+Provee una serie de recursos identificados con una URI
+(ej. \verb|/v1/Conversations/Messages|).
+Estos recursos a su vez están divididos en dominios
+(ej. \verb|conversations.twilio.com|).
+Juntando el dominio y la URI se obtiene una dirección
+a la cuál se pueden realizar peticiones HTTP
+para crear, leer, modificar o borrar una instancia de dicho recurso.
+Por ejemplo, para crear un mensaje se enviaría una petición
+de tipo \verb|POST|
+a \verb|https://conversations.twilio.com/v1/Conversations/Messages|.
+
+El uso de twilio-python permite evitar crear peticiones HTTP directamente,
+ofreciendo en su lugar una abstracción idiomática.
+
+\hfill
+
+El uso de la librería, se centra al rededor de la clase \verb|Client|.
+El usuario construye esta clase
+y a través de ella accede a todos los recursos que provee la API de Twilio.
+Se configura al instanciarla con los parámetros opcionales del constructor,
+incluyendo el cliente HTTP que usa.
+
+\verb|Client| tiene como parámetros los diversos dominios de Twilio
+(ej. \verb|conversations|)
+con sus versiones (ej. \verb|V1|)
+que a su vez contienen sus recursos
+(ej. \verb|Conversations|, \verb|Messages|)
+y funciones correspondientes con realizar peticiones
+a sus respectivas URIs.
+Llamar a la función:
+\\ \hspace*{1em} \verb|client.conversations.v1.conversations.messages.create()|
+\\hace que el \verb|Client|
+use su cliente HTTP para enviar una petición \verb|POST| a:
+\\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations/Messages|
+
 
 \section{Participantes}
 Los participantes más importante de Twilio Python que han trabajado en el proyecto son:
