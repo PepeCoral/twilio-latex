@@ -18,6 +18,7 @@
 \usepackage[style=ieee,backend=biber]{biblatex}
 \usepackage{imakeidx}
 \usepackage{tikz}
+\usepackage{tikz-uml}
 \usepackage{caption}
 \usetikzlibrary{babel}
 \usetikzlibrary{positioning}
@@ -192,36 +193,57 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Licencia) at (-2,4){\textbf{Licencia} \\ MIT License};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administracion) at (6,3){\textbf{Administracion} \\
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administracion) at (5,3){\textbf{Administracion} \\
   \textbf{del Proyecto}\\ \includegraphics[width=2cm]{github-logo.png}};
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrollo) at (-6,3){\textbf{Desarrollo} \\ \\ \includegraphics[width=2cm]{python-logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Autogeneradores} \\ OpenAPI
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Generadores de codigo} \\ OpenAPI
   \\ Yoyodyne};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Competencia) at (6,0){\textbf{Competencia} \\ Plivo\\Bandwidth\\CallHippo};
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Competencia) at (5,0){\textbf{Competencia} \\ Plivo\\Bandwidth\\CallHippo};
 
   \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Dependencias) at (-6,-3){\textbf{Dependencias} \\ Aiohttp\\ 
   PyJWT\\Django \\ Pytest};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de Soporte) at (6,-3){\textbf{Herramientas de Soporte} \\ \includegraphics[width=2cm]{sonarcloud-logo.png}};
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de Soporte) at (5,-3){\textbf{Herramientas de Soporte} \\ \includegraphics[width=2cm]{sonarcloud-logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrolladores) at (0,-4){\textbf{Desarrolladores} \\ Sam Kimbrel\\Evan Fossier\\Kyle Conroy\\Jingming Niu\\Ragil Prasetya};
+  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrolladores) at (-1,-4){\textbf{Desarrolladores} \\ Sam Kimbrel\\Evan Fossier\\Kyle Conroy\\Jingming Niu\\Ragil Prasetya};
 
-  \draw[thick,->] (Twilio) -- (Usuarios);
-  \draw[thick,->] (Twilio) -- (Licencia);
-  \draw[thick,->] (Twilio) -- (Desarrollo);
-  \draw[thick,->] (Twilio) -- (Administracion);
-  \draw[thick,->] (Twilio) -- (Licencia);
-  \draw[thick,->] (Twilio) -- (Autogeneradores);
-  \draw[thick,->] (Twilio) -- (Competencia);
+  %TODO: Fechas de la vista de contexto
+  
   
 \end{tikzpicture}  
 
 \subsection{Vista de Escenarios}
 
+\begin{tikzpicture}
+  \begin{umlsystem}[x=0] {} % empty title
+      \umlusecase[name=a,width=2.5cm] {Use case a}
+      \umlusecase[name=b,x=6,width=2.5cm] {Use case b}
+      \umlusecase[name=c,x=6,y=-3,width=2.5cm] {Use case c}
+      \umlusecase[name=d,y=-3,width=2.5cm] {Use case d}
+  \end{umlsystem}
+  \node [above] at (current bounding box.north) {Name of the system};
 
+  \umlactor[y=-1] {Actor 1}
+  \umlactor[y=-3] {Actor 2}
+  \umlactor[x=18] {Actor 3}
+
+  \umlassoc{Actor 1}{a}
+  \umlassoc{Actor 2}{a}
+
+
+  % \umlextend{a}{b}
+  % \umlinclude{c}{d}
+
+  % manual versions of the above
+  \draw [tikzuml dependency style] (a) -- node[above] {$\ll \text{extend} \gg$} (b);
+  \draw [tikzuml dependency style] (d) -- node[above] {$\ll \text{include} \gg$} (c);
+
+  % bent association
+  \draw [tikzuml association style] (a) to[bend right=10] (Actor 3);
+\end{tikzpicture}
 
 
 \subsection{Vista Funcional}
@@ -241,7 +263,7 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
   \node[align=center] at (1,1.9) {<<dispositivo>>\\ \textbf{Ordenador}};
 
   \node[parallelepiped,draw=black,fill=white,minimum width=4.6cm,minimum height=3cm] at (-0.3,-0.6) {};
-  \node[align=center] at (0.8,0.1) {<<entorno de ejecucion>>\\ \textbf{Intérprete de Python}};
+  \node[align=center] at (0.8,0.1) {<<entorno de ejecucion>>\\ \textbf{Interprete de Python}};
 
   \node[align=center, draw] at (0.8,-1.2) {<<artefacto>>\\ \textbf{twilio-python}};
 
@@ -254,16 +276,8 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \label{fig:vista de despliegue}
 \end{center}
 
-\hfill
-
-En la Figura ~\ref{fig:vista de despliegue}
-se puede ver representado el entorno de ejecución
-necesario para la librería.
-Es necesario que se ejecute en una computadora
-con un intérprete de Python (ej. CPython).
-Además, para realizar las peticiones necesita acceso
-a través de Internet a la API de Twilio.
-
+\hfill\\
+La librería twilio-python requiere de un interprete de Python para ejecutarse correctamente, ademas necesita acceso a la API de Twilio via internet.
 \subsection{Vista de Desarrollo}
 
 
