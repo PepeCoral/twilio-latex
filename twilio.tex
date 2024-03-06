@@ -18,6 +18,7 @@
 \usepackage[style=ieee,backend=biber]{biblatex}
 \usepackage{imakeidx}
 \usepackage{tikz}
+\usepackage{caption}
 \usetikzlibrary{babel}
 \usetikzlibrary{positioning}
 
@@ -90,10 +91,7 @@ Juan Prieto Fernández (juaprifer@alum.us.es) \\
 Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 \date{}
 
-
 \begin{document}
-
-
 
 \begin{titlepage}
   \centering
@@ -108,6 +106,7 @@ Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 \end{titlepage}
 
 \tableofcontents
+\newpage
 
 \section{Introducción}
 
@@ -160,6 +159,9 @@ Llamar a la función:
 \\hace que el \verb|Client|
 use su cliente HTTP para enviar una petición \verb|POST| a:
 \\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations/Messages|
+
+\section{Generación de código}
+
 
 
 \section{Participantes}
@@ -223,23 +225,26 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \subsection{Vista de Despliegue}
 
 
-\hfill\\
+\hfill
 
+\begin{center}
 \begin{tikzpicture}[node distance=2cm]
   \node [parallelepiped,draw=black,fill=white,minimum width=5.5cm,minimum height=5cm] (Ordenador) at (0,0) {};
-
   \node[align=center] at (1,1.9) {<<dispositivo>>\\ \textbf{Ordenador}};
-  \node[parallelepiped,draw=black,fill=white,minimum width=4.6cm,minimum height=3cm] at (-0.3,-0.8) {};
 
+  \node[parallelepiped,draw=black,fill=white,minimum width=4.6cm,minimum height=3cm] at (-0.3,-0.6) {};
   \node[align=center] at (0.8,0.1) {<<entorno de ejecucion>>\\ \textbf{Interprete de Python}};
 
   \node[align=center, draw] at (0.8,-1.2) {<<artefacto>>\\ \textbf{twilio-python}};
 
-  \node [align=center, draw]  (API) at (7,0) {<<api>>\\ \textbf{Twilio API}};
+  \node [align=center, draw]  (API) at (7,0) {<<api>>\\ \textbf{API de Twilio}};
 
-  \draw[thick,->] (3.4,0) -- (5.5,0);
+  \draw[->] (Ordenador) -- (API);
  
 \end{tikzpicture}
+\captionof{figure}{Vista de despliegue}
+\label{fig:vista de despliegue}
+\end{center}
 
 \hfill\\
 La librería twilio-python requiere de un interprete de Python para ejecutarse correctamente, ademas necesita acceso a la API de Twilio via internet.
