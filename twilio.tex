@@ -380,10 +380,16 @@ Se accede al contenido de manera segura.
 
 \hfill
 
-SonarCloud también reconoce la llamada al algoritmo \verb|sha1|
+SonarCloud también reconoce la llamada al algoritmo SHA1,
+que es inseguro \cite{sha1-broken},
 como una posible vulnerabilidad.
 
+\begin{lstlisting}[language=Python]
+mac = hmac.new(self.token, s.encode("utf-8"), sha1)
+\end{lstlisting}
 
+Sin embargo, no usa el algoritmo SHA1
+sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
 
 \section{Sugerencias de mejora}
 
