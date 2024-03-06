@@ -16,8 +16,57 @@
 \usepackage{csquotes}
 \usepackage[style=ieee,backend=biber]{biblatex}
 \usepackage{imakeidx}
+\usepackage{tikz}
+\usetikzlibrary{babel}
+\usetikzlibrary{positioning}
 
 
+\makeatletter
+\pgfkeys{/pgf/.cd,
+  parallelepiped offset x/.initial=2mm,
+  parallelepiped offset y/.initial=2mm
+}
+\pgfdeclareshape{parallelepiped}
+{
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]{north}
+  \inheritanchor[from=rectangle]{north west}
+  \inheritanchor[from=rectangle]{north east}
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  \inheritanchor[from=rectangle]{mid}
+  \inheritanchor[from=rectangle]{mid west}
+  \inheritanchor[from=rectangle]{mid east}
+  \inheritanchor[from=rectangle]{base}
+  \inheritanchor[from=rectangle]{base west}
+  \inheritanchor[from=rectangle]{base east}
+  \inheritanchor[from=rectangle]{south}
+  \inheritanchor[from=rectangle]{south west}
+  \inheritanchor[from=rectangle]{south east}
+  \backgroundpath{
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgfmathsetlength\pgfutil@tempdima{\pgfkeysvalueof{/pgf/parallelepiped offset x}}
+    \pgfmathsetlength\pgfutil@tempdimb{\pgfkeysvalueof{/pgf/parallelepiped offset y}}
+    \def\ppd@offset{\pgfpoint{\pgfutil@tempdima}{\pgfutil@tempdimb}}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathclose
+    \pgfpathmoveto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xb}{\pgf@ya}}{\ppd@offset}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xb}{\pgf@yb}}{\ppd@offset}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xa}{\pgf@yb}}{\ppd@offset}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xb}{\pgf@yb}}{\ppd@offset}}
+  }
+}
+\makeatother
 
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
@@ -110,14 +159,26 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 
 \subsection{Vista de Despliegue}
 
+\hfill\\
 
+\begin{tikzpicture}[node distance=2cm]
+  \node [parallelepiped,draw=black,fill=white,minimum width=5.5cm,minimum height=5cm] (Ordenador) at (0,0) {};
 
+  \node[align=center] at (1,1.9) {<<dispositivo>>\\ \textbf{Ordenador}};
+  \node[parallelepiped,draw=black,fill=white,minimum width=4.6cm,minimum height=3cm] at (-0.3,-0.8) {};
 
-\subsection{Vista de Desarrollo}
+  \node[align=center] at (0.8,0.1) {<<entorno de ejecucion>>\\ \textbf{Interprete de Python}};
 
+  \node[align=center, draw] at (0.8,-1.2) {<<artefacto>>\\ \textbf{twilio-python}};
 
+  \node [align=center, draw]  (API) at (7,0) {<<api>>\\ \textbf{Twilio API}};
 
+  \draw[thick,->] (3.4,0) -- (5.5,0);
+ 
+\end{tikzpicture}
 
+\hfill\\
+Esta es la vista de Despliegue que hace cosas 
 \section{Puntos de variabilidad y extensión}
 
 La librería ofrece múltiples puntos de extensión
