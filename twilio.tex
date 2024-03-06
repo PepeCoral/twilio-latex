@@ -13,11 +13,10 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{titling}
-
 \usepackage{tikz-uml}
 \usepackage{tikz}
 \usepackage{csquotes}
-\usepackage[backend=biber]{biblatex}
+\usepackage[style=ieee,backend=biber]{biblatex}
 \addbibresource{referencias.bib}
 
 \font\nullfont=cmr10
@@ -41,7 +40,7 @@ Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 
 \begin{titlepage}
   \centering
-  \vfill
+  \vfil
   {\bfseries\Large
       \thetitle
   }    
@@ -143,11 +142,15 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
   
 \end{tikzpicture}
 
+
+
 \subsection{Vista Funcional}
 
 \begin{tikzpicture}
   
 \end{tikzpicture}
+
+
 
 \subsection{Vista de Despliegue}
 
@@ -155,13 +158,63 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
   
 \end{tikzpicture}
 
+
+
 \subsection{Vista de Desarrollo}
 
 \begin{tikzpicture}
   
 \end{tikzpicture}
 
+
+
 \section{Puntos de variabilidad y extensión}
+
+La librería ofrece múltiples puntos de extensión
+a través de diferentes clases abstractas.
+
+El paquete \verb|twiml| contiene la clase abstracta \verb|TwiML|
+que representa un tipo de etiqueta.
+
+El paquete \verb|jwt| contiene la clase abstracta \verb|AccessTokenGrant|
+que representa una admisión para un recurso.
+
+El paquete \verb|http| ofrece la clase abstracta
+\verb|HttpClient|, que representa un cliente HTTP,
+y su heredero abstracto \verb|AsyncHttpClient|,
+que es capaz de realizar peticiones asíncronas.
+
+En el paquete \verb|base| se definen numerosas clases abstractas:
+\verb|Domain| representa un dominio
+(ej. \verb|api.twilio.com|, \verb|lookups.twilio.com|),
+\verb|Version| representa una versión de la API para ese dominio,
+\verb|InstanceContext| representa la URI para una instancia de un recurso,
+\verb|InstanceResource| representa una instancia de un recurso,
+y \verb|ListResource| representa una lista de instancias de un recurso.
+
+El paquete \verb|rest| define herederos concretos a las clases abstractas
+del paquete \verb|base|, pero no contiene ningún punto de extensión.
+
+\hfill
+
+Esta librería ofrece puntos de variabilidad
+en los argumentos que se pueden pasar
+al momento de instanciar el cliente para configurarlo
+\cite{readme}.
+La autenticación se puede realizar con un token de autorización o
+con una clave de API junto a una clave secreta.
+También se puede especificar a qué región (ej. \verb|au1|)
+y qué ubicación de borde (ej. \verb|sydney|)
+ha de realizar peticiones el cliente.
+
+Finalmente, se puede especificar el tipo de cliente HTTP que usa.
+La librería ofrece tres clientes:
+\verb|TwilioHttpClient|, el cliente síncrono por defecto,
+\verb|AsyncTwilioHttpClient|, un cliente asíncrono, y
+\verb|ValidationClient|, un cliente síncrono que usa encripción jwt.
+Si un usuario de la librería necesitase crear un nuevo cliente,
+el proceso está documentado
+\cite{crear-cliente-http}.
 
 \section{Analisis de atributos de calidad}
 
