@@ -16,6 +16,11 @@
 
 \usepackage{tikz-uml}
 \usepackage{tikz}
+\usepackage{csquotes}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{referencias.bib}
+
+\font\nullfont=cmr10
 
 \title{%
   Twilio Python \\
@@ -50,7 +55,7 @@ Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 
 \section{Introducción}
 
-Aqui va la introduccion
+Twilio \cite{knuthwebsite}
 
 \section{Vista general}
 
@@ -135,8 +140,6 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \section{Contribuciones al proyecto}
 \section{Conclusiones}
 
-\bibliographystyle{alpha}
-\bibliography{sample}
-
+\printbibliography
 
 \end{document}
