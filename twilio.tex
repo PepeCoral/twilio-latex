@@ -19,6 +19,8 @@
 \usepackage{imakeidx}
 \usepackage{tikz}
 \usepackage{caption}
+\usepackage{listings}
+\usepackage{xcolor}
 \usetikzlibrary{babel}
 \usetikzlibrary{positioning}
 
@@ -72,6 +74,30 @@
 
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{codegreen},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+\lstset{style=mystyle}
 
 \addbibresource{referencias.bib}
 
@@ -316,6 +342,48 @@ el proceso está documentado
 \cite{crear-cliente-http}.
 
 \section{Analisis de atributos de calidad}
+
+\subsection{Mantenibilidad}
+
+\subsection{Fiabilidad}
+
+\subsection{Securidad}
+
+Consideramos que la seguridad de la librería es buena
+a pesar de que SonarCloud detecta dos problemas
+(por los cuales le asigna una D).
+
+\hfill
+
+SonarCloud ve que la función \verb|jwt_lib.get_unverified_header|
+da acceso al contenido del JSON codificado sin verificarlo
+y lo identifica como una vulnerabilidad.
+
+\begin{lstlisting}[language=Python]
+headers = jwt_lib.get_unverified_header(jwt)
+
+alg = headers.get(alg)
+if alg != cls.ALGORITHM: # cls.ALGORITHM = "HS256"
+  raise ValueError(
+    ...
+  )
+
+payload = jwt_lib.decode(
+  ...
+)
+\end{lstlisting}
+
+Sin embargo, se puede ver que no se accede al contenido.
+Únicamente se verifica que el algoritmo definido en la cabecera
+sea el correcto (HS256) antes de decodificar.
+Se accede al contenido de manera segura.
+
+\hfill
+
+SonarCloud también reconoce la llamada al algoritmo \verb|sha1|
+como una posible vulnerabilidad.
+
+
 
 \section{Sugerencias de mejora}
 
