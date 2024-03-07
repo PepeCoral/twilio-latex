@@ -302,8 +302,13 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \label{fig:vista de despliegue}
 \end{center}
 
-\hfill\\
-La librería twilio-python requiere de un interprete de Python para ejecutarse correctamente, ademas necesita acceso a la API de Twilio via internet.
+\hfill
+
+La librería twilio-python ha de ejecutarse
+dentro de un intérprete de Python (ej. \verb|CPython|)
+en un ordenador que pueda conectarse a través de Internet
+a la API de Twilio.
+
 \subsection{Vista de Desarrollo}
 
 
@@ -405,6 +410,8 @@ mac = hmac.new(self.token, s.encode("utf-8"), sha1)
 
 Sin embargo, no usa el algoritmo SHA1
 sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
+
+\subsection{Usabilidad}
 
 \section{Sugerencias de mejora}
 
