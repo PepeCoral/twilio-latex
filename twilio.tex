@@ -7,7 +7,7 @@
 % Set page size and margins
 % Replace `letterpaper' with `a4paper' for UK/EU standard size
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-
+\usepackage{pdfpages}
 % Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -242,34 +242,8 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \end{tikzpicture}  
 
 \subsection{Vista de Escenarios}
+\includegraphics{usecase.pdf}
 
-\begin{tikzpicture}
-  \begin{umlsystem}[x=0] {} % empty title
-      \umlusecase[name=a,width=2.5cm] {Use case a}
-      \umlusecase[name=b,x=6,width=2.5cm] {Use case b}
-      \umlusecase[name=c,x=6,y=-3,width=2.5cm] {Use case c}
-      \umlusecase[name=d,y=-3,width=2.5cm] {Use case d}
-  \end{umlsystem}
-  \node [above] at (current bounding box.north) {Name of the system};
-
-  \umlactor[y=-1] {Actor 1}
-  \umlactor[y=-3] {Actor 2}
-  \umlactor[x=18] {Actor 3}
-
-  \umlassoc{Actor 1}{a}
-  \umlassoc{Actor 2}{a}
-
-
-  % \umlextend{a}{b}
-  % \umlinclude{c}{d}
-
-  % manual versions of the above
-  \draw [tikzuml dependency style] (a) -- node[above] {$\ll \text{extend} \gg$} (b);
-  \draw [tikzuml dependency style] (d) -- node[above] {$\ll \text{include} \gg$} (c);
-
-  % bent association
-  \draw [tikzuml association style] (a) to[bend right=10] (Actor 3);
-\end{tikzpicture}
 
 
 \subsection{Vista Funcional}
