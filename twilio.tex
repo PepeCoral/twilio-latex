@@ -294,6 +294,7 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \hfill
 
 
+\begin{figure}
 \begin{tikzpicture}[node distance=2cm]
   \node [parallelepiped,draw=black,fill=white,minimum width=5.5cm,minimum height=5cm] (Ordenador) at (0,0) {};
   \node[align=center] at (1,1.9) {<<dispositivo>>\\ \textbf{Ordenador}};
@@ -310,6 +311,7 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \end{tikzpicture}
 \captionof{figure}{Vista de despliegue}
 \label{fig:vista de despliegue}
+\end{figure}
 
 \hfill
 
@@ -616,8 +618,18 @@ sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
 \subsection{Usabilidad}
 
 \section{Sugerencias de mejora}
-En general el funcionamiento de la API es impecable debido a la generación del código, sin embargo pensamos que la documentación que aportan es bastante escueta y aporta pocos ejemplos prácticos para ayudar a nuevos usuarios a aprender a usar esta herramienta. Esto se debe a que gran parte de la documentación también es generada automáticamente.
-Como sugerencia de mejora pensamos que seria buena idea añadir una documentación mas extensa, con mas ejemplos y casos de uso distintos.
+
+En general el funcionamiento de la API es impecable
+debido a la generación del código,
+y tiene un 100\% de cobertura por pruebas ya que también se autogeneran.
+sin embargo pensamos que la documentación que aportan
+es insuficiente y aporta pocos ejemplos prácticos.
+Esto se debe a que no se genera la documentación automáticamente,
+y a que no se han asignado los recursos para hacerla más clara
+para todos los lenguajes para los que Twilio mantiene librerías.
+Como sugerencia de mejora
+pensamos que se debería extender la documentación
+con más ejemplos y casos de uso.
 
 \section{Contribuciones al proyecto}
 
