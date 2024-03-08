@@ -133,6 +133,7 @@ Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 \end{titlepage}
 
 \tableofcontents
+
 \newpage
 
 \section{Introducción}
@@ -141,6 +142,10 @@ Twilio es una compañía que ofrece distintos servicios
 de manejos de datos de clientes y comunicación.
 Provee una API HTTP a través de la cual se pueden realizar llamadas telefónicas,
 enviar correos, mensajes SMS, mensajes de WhatsApp, etc.
+
+Twilio también define TwiML,
+un documento XML con tags especiales
+para poder definir cómo responder a llamadas y mensajes recibidos.
 
 También mantiene librerías oficiales para numerosos lenguajes de programación
 que sirven como envoltorios para su API,
@@ -187,11 +192,39 @@ Llamar a la función:
 use su cliente HTTP para enviar una petición \verb|POST| a:
 \\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations/Messages|
 
+\hfill
+
 \section{Generación de código}
 
+La API de Twilio está documentada
+de acuerdo a la especificación OpenAPI
+\cite{twilio-openapi}
+\cite{twilio-openapi-repo}.
+Esta especificación establece un formato
+con el que el proveedor de la API
+puede informar de su estructura:
+tanto la del cuerpo esperado
+como la de la respuesta
+para cada tipo de petición permitida
+para todos los recursos ofrecidos.
+
+Twilio usa la herramienta OpenAPI Generator
+\cite{twilio-generated-openapi}.
+Esta herramienta usa la documentación en el estandar OpenAPI
+para generar automáticamente todo el código relevante.
+Esto incluye las clases que representan los dominos,
+los recursos, las instancias de los recursos,
+y sus métodos.
+
+\hfill
+
+Twilio también usa una herramienta interna llamada Yoyodyne
+para generar la mayoría del código relevante al uso de TwiML
+\cite{twilio-generated-yoyodyne}.
 
 
 \section{Participantes}
+TODO! fix
 Los participantes más importante de Twilio Python que han trabajado en el proyecto son:
 \begin{itemize}
   \item Sam Kimbrel \href{mailto:skimbrel@twilio.com}{skimbrel@twilio.com}
@@ -208,10 +241,13 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
   No hay un equipo dedicado al testing ya que todo los tests se generan automaticamente.
   \subsection*{Soporte}
   Se ocupan de mantener el código y resolver los issues de la comunidad, los más importantes son Kyle, revisa y acepta los pull request, y Ragil y Jing que  arreglan bugs y refactorizan el código
+
 \section{Vistas}
 
 \subsection{Vista de Contexto}
-\hfill \\
+
+\hfill
+
 \begin{tikzpicture}
   \node[minimum height=1.5cm,minimum width=3cm,draw, align=center](Twilio) at (0,0){\includegraphics[width=2cm]{logo.png}};
 
@@ -242,15 +278,8 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \end{tikzpicture}  
 
 \subsection{Vista de Escenarios}
+
 \includegraphics{usecase.pdf}
-
-
-
-\subsection{Vista Funcional}
-
-
-
-
 
 \subsection{Vista de Despliegue}
 
@@ -279,11 +308,62 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \hfill
 
 La librería twilio-python ha de ejecutarse
-dentro de un intérprete de Python (ej. \verb|CPython|)
+dentro de un intérprete de Python (ej. CPython)
 en un ordenador que pueda conectarse a través de Internet
 a la API de Twilio.
 
 \subsection{Vista de Desarrollo}
+
+La librería está dividida en 5 módulos.
+
+\hfill
+
+El módulo \verb|http| contiene diversos clientes HTTP.
+Entre otros, contiene con validación usando JSON Web Tokens (JWT).
+Estos permiten enviar JSONs con firma y opcionalmente encripción,
+y su lógica está definida en el módulo \verb|jwt|.
+
+\hfill
+
+El módulo \verb|base| contiene
+la lógica que usa \verb|Client|,
+la clase central de la librería,
+en la clase \verb|ClientBase|.
+Su constructor permite configurarla,
+y contiene la lógica para 
+crear las cabeceras de las peticiones HTTP
+con la información necesaria para autenticarlas.
+
+También contiene las clases abstractas
+para representar dominios,
+las versiónes de la API que se pueden usar para un dominio
+y los recursos que los dominios contienen.
+
+\hfill
+
+El módulo \verb|rest|
+contiene toda la información específica a la API:
+define todos los dominios,
+todas sus versiones y todos sus recursos,
+junto con sus métodos.
+También extiende a \verb|ClientBase| con \verb|Client|,
+añadiendo todos los dominios como parámetros
+para que puedan ser accedidos.
+
+\hfill
+
+El módulo \verb|twiml| no depende de ningún otro.
+Manualmente, se definen algunas funciones de utilidad
+y la clase abstracta \verb|TwiML|
+que representa una etiqueta XML.
+Esta clase es extendida
+con clases que representan los tipos de etiquetas especiales de TwiML.
+Estas son generadas por la herramienta interna Yoyodyne
+\cite{twilio-generated-yoyodyne},
+en todos los lenguajes para los que Twilio mantiene librerías oficiales.
+
+
+\subsection{Vista Funcional}
 
 
 \section{Puntos de variabilidad y extensión}
