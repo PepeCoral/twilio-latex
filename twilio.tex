@@ -388,6 +388,42 @@ reciben parámetros de tipo \verb|TwiML|.
 \hfill
 
 
+\hfill
+
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{VistaFuncionalDominio.pdf}
+  \captionof{figure}{Vista funcional (Dominio)}
+  \label{fig:vista funcional dominio}
+\end{center}
+
+\hfill
+
+La figura \ref{fig:vista funcional dominio}
+muestra la esctructura de todos los dominios
+usando al dominio \verb|Conversations| como ejemplo.
+La clase \verb|Conversations| implementa funciones obsoletas por retrocompatibilidad
+que redirigen a las funciones de la versión con una advertencia.
+La clase \verb|ConversationsBase| únicamente almacena la URL del dominio
+(\verb|conversations.twilio.com|)
+y una referencia a cada versión de la API
+(en este caso, solo \verb|V1|).
+
+La clase abstracta \verb|Version|
+ofrece un envoltorio para el método \verb|request| de su \verb|Client|,
+que toma como parámetro una URI relativa a la versión
+(\verb|conversations.twilio.com/v1|)
+y la realiza.
+Contiene una propiedad por cada recurso que contiene el dominio.
+Los diversos recursos llaman a la función \verb|request| de la versión
+pasando como parámetro su URI relativa a ella, que almacenan (ej. \verb|/User|).
+Para \verb|UserList|,
+llamarla resulta en una petición a \verb|conversations.twilio.com/v1/User|.
+Usando esto, permiten crear una instancia del recurso,
+obtener una instancia del recurso,
+u obtener todas las instancias
+en formato de lista, de lista paginada o de \verb|stream|.
+
+
 
 \section{Puntos de variabilidad y extensión}
 
@@ -500,7 +536,7 @@ Debido a lo robusta y fiable que es la librería,
 no hemos encontrado ningún error en el código que se pueda arreglar.
 La parte del código generada por OpenAPI-Generator
 tiene una estructura confusa,
-pero solo puede ser ajustada por empleados de Twilio \cite{contributing}.
+pero únicamente puede ser ajustada por empleados de Twilio \cite{contributing}.
 
 Hemos contribuído haciendo un pull request
 traduciendo el \verb|README.md| al español
