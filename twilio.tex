@@ -491,7 +491,7 @@ sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
 \subsection{Usabilidad}
 
 \section{Sugerencias de mejora}
-En general el funcionamiento de la API es impecable debido a la generación del código, sin embargo pensamos que la documentación que aportan es bastante escueta y aporta pocos ejemplos prácticos para ayudar a nuevos usuarios a aprender a usar esta herramienta.
+En general el funcionamiento de la API es impecable debido a la generación del código, sin embargo pensamos que la documentación que aportan es bastante escueta y aporta pocos ejemplos prácticos para ayudar a nuevos usuarios a aprender a usar esta herramienta. Esto se debe a que gran parte de la documentación también es generada automáticamente.
 Como sugerencia de mejora pensamos que seria buena idea añadir una documentación mas extensa, con mas ejemplos y casos de uso distintos.
 
 \section{Contribuciones al proyecto}
@@ -511,6 +511,12 @@ y contestando a diversos issues abiertos
 \cite{contribución-wrong-login}.
 
 \section{Conclusiones}
+
+En este proyecto, hemos documentado la arquitectura de Twilio-Python, el cual es un módulo python para comunicarse con la API de Twilio y generar TwiML, desarrollado por Twilio, la cual es una empresa de comunicación estadounidense.\\
+Esta herramienta cuenta con un diseño basado en la arquitectura REST, que permite una gran paralelización y el caché de recursos, lo que resulta en un sistema fácil de escalar.\\
+Además, gracias al estándar OpenAPI, sólo tienen que implementar una pequeña lógica, ya que sobre esa base se autogenera todo el código, lo que hace que la mantenibilidad de este sea excepcional.\\
+Sin embargo, hay algunas cuestiones mejorables como la documentación, la cual es bastante escasa, ya que sólo proveen documentación de cómo crear un cliente en cada lenguaje y casos de usos básicos. \\
+La forma en la que nosotros hemos contribuido con Twilio-Python ha sido traduciendo al español la documentación de cómo usar la API y respondiendo algunos de los issues abiertos.
 
 \newpage
 
