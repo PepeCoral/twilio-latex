@@ -575,7 +575,33 @@ el proceso está documentado
 
 \subsection{Mantenibilidad}
 
+La mantenibilidad es muy alta.
+Casi todo el código, junto con sus pruebas,
+es generado por OpenAPI Generator
+\cite{twilio-generated-openapi}
+o la herramienta interna Yoyodyne
+\cite{twilio-generated-yoyodyne}.
+La cantidad de código que hay de mantener manualmente es muy baja:
+solo los módulos \verb|base|, \verb|http| y \verb|jwt|.
+
+Por ejemplo,
+si Twilio añadiese un nuevo dominio con muchos nuevos recursos a su API,
+no se tendría que hacer ningún cambio manual a la librería.
+OpenAPI Generator añadiría las clases necesarias
+y crearía las pruebas para verificar que funciona.
+Lo mismo pasaría con Yoyodyne si se añadiesen etiquetas a TwiML,
+aunque para TwiML las pruebas son escritas a mano
+\cite{twilio-twiml-manual-tests}.
+Solo sería necesario hacer cambios manuales si hace falta actualizar
+un cliente HTTP o la encripción JWT.
+
+
 \subsection{Fiabilidad}
+
+La fiabilidad también es muy alta
+debido a la covertura de pruebas del 100\%
+que se obtiene gracias a las pruebas generadas por OpenAPI Generator
+y al trabajo manual para el resto de clases.
 
 \subsection{Securidad}
 
@@ -624,13 +650,33 @@ sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
 
 \subsection{Usabilidad}
 
+La API tiene una documentación excelente independiente del lenguaje.
+Aunque hay muchos ejemplos en todos los lenguajes soportados oficialmente,
+hay muchas cosas que no están documentadas 
+en ningún lenguaje de programación,
+sino solamente en general.
+
+Hay documentación para cada lenguaje,
+incluyendo para Python,
+a un nivel bastante general.
+Sin embargo, no hay para la mayoría de recursos.
+Entre la información general
+y las sugerencias que aportan los editores de código modernos
+se puede realizar el código sin muchos problemas,
+(ej. al escribir \verb|client.conversations.v1.conversation.|
+se sugieren los métodos
+\verb|list()|, \verb|stream()|, \verb|create()|, etc.)
+Pero, en general, la documentación es muy incompleta.
+
+
 \section{Sugerencias de mejora}
 
 En general el funcionamiento de la API es impecable
 debido a la generación del código,
-y tiene un 100\% de cobertura por pruebas ya que también se autogeneran.
-sin embargo pensamos que la documentación que aportan
-es insuficiente y aporta pocos ejemplos prácticos.
+y tiene un 100\% de cobertura por pruebas
+ya que la gran mayoría de pruebas son generadas automáticamente.
+Sin embargo pensamos que la documentación que aportan es insuficiente
+y que aporta pocos ejemplos prácticos.
 Esto se debe a que no se genera la documentación automáticamente,
 y a que no se han asignado los recursos para hacerla más clara
 para todos los lenguajes para los que Twilio mantiene librerías.
