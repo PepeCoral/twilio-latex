@@ -360,6 +360,9 @@ También extiende a \verb|ClientBase| con \verb|Client|,
 añadiendo todos los dominios como parámetros
 para que puedan ser accedidos.
 
+Este módulo está completamente autogenerado por OpenAPI Generator
+\cite{twilio-generated-openapi}.
+
 \hfill
 
 El módulo \verb|twiml| no depende de ningún otro.
@@ -406,7 +409,7 @@ de las peticiones HTTP realizadas.
 \hfill
 
 \begin{center}
-  \includegraphics[width=\textwidth]{VistaFuncionalCliente.pdf}
+  \includegraphics[width=0.9\textwidth]{VistaFuncionalCliente.pdf}
   \captionof{figure}{Vista funcional (Client)}
   \label{fig:vista funcional client}
 \end{center}
@@ -418,7 +421,9 @@ muestra como la clase \verb|Client|
 (del módulo \verb|rest|)
 expande la clase \verb|ClientBase|.
 Añade como parámetros a todas las clases
-que representan los dominios de la API de Twilio.
+que representan los dominios de la API de Twilio,
+que a su vez heredan de \verb|Domain|
+(una clase abstracta del módulo \verb|base|).
 
 
 \section{Puntos de variabilidad y extensión}
