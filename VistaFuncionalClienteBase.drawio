@@ -1,10 +1,10 @@
-<mxfile host="Electron" modified="2024-03-08T15:20:27.460Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="OPsrcm-aIeajSbZ0vRTl" version="23.1.5" type="device">
+<mxfile host="Electron" modified="2024-03-08T15:36:30.162Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="27Bq8dECxVJZWlfAoDoq" version="23.1.5" type="device">
   <diagram id="STEBfEphsbRQPfoHGECy" name="Página-1">
     <mxGraphModel dx="1434" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="hQvGvdslbpYfb55w5hF3-3" value="«componente»&lt;br&gt;&lt;b&gt;HttClient&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="hQvGvdslbpYfb55w5hF3-3" value="«componente»&lt;br&gt;&lt;b&gt;HttpClient&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="300" y="155" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="hQvGvdslbpYfb55w5hF3-4" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="hQvGvdslbpYfb55w5hF3-3" vertex="1">
