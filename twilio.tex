@@ -314,7 +314,7 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 
 \hfill
 
-La figura \ref{fig:vista de despliegue}
+La figura \ref{fig:vista funcional clientbase}
 muestra el entorno en el que se ha de ejecutar la librería:
 dentro de un intérprete de Python (ej. CPython)
 en un ordenador que pueda conectarse a través de Internet
@@ -341,7 +341,7 @@ la clase central de la librería,
 en la clase \verb|ClientBase|.
 Su constructor permite configurarla,
 y contiene la lógica para 
-establecer las cabeceras de las peticiones HTTP
+crear las cabeceras de las peticiones HTTP
 con la información necesaria para autenticarlas.
 
 También contiene las clases abstractas
@@ -359,9 +359,6 @@ junto con sus métodos.
 También extiende a \verb|ClientBase| con \verb|Client|,
 añadiendo todos los dominios como parámetros
 para que puedan ser accedidos.
-
-Este módulo está completamente autogenerado por OpenAPI Generator
-\cite{twilio-generated-openapi}.
 
 \hfill
 
@@ -384,46 +381,12 @@ reciben parámetros de tipo \verb|TwiML|.
 
 \begin{center}
   \includegraphics[width=\textwidth]{VistaFuncionalClienteBase.pdf}
-  \captionof{figure}{Vista funcional (ClientBase)}
+  \captionof{figure}{Vista funcional de ClientBase}
   \label{fig:vista funcional clientbase}
 \end{center}
 
 \hfill
 
-La figura \ref{fig:vista funcional clientbase}
-explica las dependencias funcionales de
-la clase abstracta \verb|ClientBase|,
-del módulo \verb|rest|.
-Utiliza el método \verb|request|
-de la clase abstracta \verb|HttpClient|
-(del módulo \verb|http|)
-y provee su propio método \verb|request|,
-un envoltorio que establece las cabeceras HTTP necesarias para la autenticación.
-En su constructor se puede definir cuál de los clientes HTTP usar.
-El cliente \verb|ValidationHttpClient|
-utiliza los métodos de la clase \verb|Jwt|
-(del módulo \verb|jwt|)
-para firmar y encriptar el JSON del cuerpo
-de las peticiones HTTP realizadas.
-
-\hfill
-
-\begin{center}
-  \includegraphics[width=0.9\textwidth]{VistaFuncionalCliente.pdf}
-  \captionof{figure}{Vista funcional (Client)}
-  \label{fig:vista funcional client}
-\end{center}
-
-\hfill
-
-La figura \ref{fig:vista funcional client}
-muestra como la clase \verb|Client|
-(del módulo \verb|rest|)
-expande la clase \verb|ClientBase|.
-Añade como parámetros a todas las clases
-que representan los dominios de la API de Twilio,
-que a su vez heredan de \verb|Domain|
-(una clase abstracta del módulo \verb|base|).
 
 
 \section{Puntos de variabilidad y extensión}
