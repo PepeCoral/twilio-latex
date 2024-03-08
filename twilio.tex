@@ -154,6 +154,7 @@ Este documento sirve como una documentación de la arquitectura
 de una de esas librerías:
 \href{https://github.com/twilio/twilio-python}{twilio-python}.
 
+
 \section{Visión general}
 
 La API de Twilio sigue el estilo arquitectónico REST \cite{twilio-rest}.
@@ -193,6 +194,7 @@ use su cliente HTTP para enviar una petición \verb|POST| a:
 \\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations/Messages|
 
 \hfill
+
 
 \section{Generación de código}
 
@@ -289,7 +291,6 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 
 \subsection{Vista de Despliegue}
 
-
 \hfill
 
 \begin{center}
@@ -313,7 +314,8 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 
 \hfill
 
-La librería twilio-python ha de ejecutarse
+La figura \ref{fig:vista funcional clientbase}
+muestra el entorno en el que se ha de ejecutar la librería:
 dentro de un intérprete de Python (ej. CPython)
 en un ordenador que pueda conectarse a través de Internet
 a la API de Twilio.
@@ -374,6 +376,17 @@ reciben parámetros de tipo \verb|TwiML|.
 
 
 \subsection{Vista Funcional}
+
+\hfill
+
+\begin{center}
+  \includegraphics[width=\textwidth]{VistaFuncionalClienteBase.pdf}
+  \captionof{figure}{Vista funcional de ClientBase}
+  \label{fig:vista funcional clientbase}
+\end{center}
+
+\hfill
+
 
 
 \section{Puntos de variabilidad y extensión}
