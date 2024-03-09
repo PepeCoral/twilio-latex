@@ -194,9 +194,6 @@ Llamar a la función:
 use su cliente HTTP para enviar una petición \verb|POST| a:
 \\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations/Messages|
 
-\hfill
-
-
 \section{Generación de código}
 
 La API de Twilio está documentada
@@ -256,41 +253,11 @@ El grupo tiene las siguientes categorías de participantes:
 
 \hfill
 
-TODO!
-\begin{figure}[H]
-  \begin{tikzpicture}
-    \node[minimum height=1.5cm,minimum width=3cm,draw, align=center](Twilio) at (0,0){\includegraphics[width=2cm]{logo.png}};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Usuarios) at (2,4){\textbf{Usuarios} \\ Desarrolladores};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Licencia) at (-2,4){\textbf{Licencia} \\ MIT License};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administracion) at (5,3){\textbf{Administracion} \\
-    \textbf{del Proyecto}\\ \includegraphics[width=2cm]{github-logo.png}};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrollo) at (-6,3){\textbf{Desarrollo} \\ \\ \includegraphics[width=2cm]{python-logo.png}};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Generadores de codigo} \\ OpenAPI
-    \\ Yoyodyne};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Competencia) at (5,0){\textbf{Competencia} \\ Plivo\\Bandwidth\\CallHippo};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Dependencias) at (-6,-3){\textbf{Dependencias} \\ Aiohttp\\ 
-    PyJWT\\Django \\ Pytest};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de soporte) at (5,-3){\textbf{Herramientas de Soporte} \\ \includegraphics[width=2cm]{sonarcloud-logo.png}};
-
-    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrolladores) at (-1,-4){\textbf{Desarrolladores} \\ Sam Kimbrel\\Evan Fossier\\Kyle Conroy\\Jingming Niu\\Ragil Prasetya};
-
-    %TODO: Fechas de la vista de contexto
-
-
-  \end{tikzpicture}  
+\begin{center}
+  \includegraphics[width=\textwidth]{VistaContexto.pdf}
   \captionof{figure}{Vista de contexto}
   \label{fig:vista contexto}
-\end{figure}
-
-\hfill
+\end{center}
 
 En la figura \ref{fig:vista contexto}
 se puede ver el entorno en el que existe la librería.
@@ -474,7 +441,7 @@ muestra como la clase \verb|Client|
 (del módulo \verb|rest|)
 expande la clase \verb|ClientBase|.
 OpenAPI Generator genera esta clase
-\cite{twilio-generated-openapi} TODO!.
+\cite{twilio-generated-openapi}.
 Añade como parámetros a todas las clases
 que representan los dominios de la API de Twilio,
 que a su vez heredan de \verb|Domain|
