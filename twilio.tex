@@ -219,8 +219,6 @@ Esto incluye las clases que representan los dominos,
 los recursos, las instancias de los recursos,
 y sus métodos.
 
-\hfill
-
 Twilio también usa una herramienta interna llamada Yoyodyne
 para generar la mayoría del código relevante al uso de TwiML
 \cite{twilio-generated-yoyodyne}.
@@ -228,77 +226,113 @@ para generar la mayoría del código relevante al uso de TwiML
 
 \section{Participantes}
 
-Los participantes más importantes para el proyecto son:
+El grupo tiene las siguientes categorías de participantes:
+
 \begin{itemize}
   \setlength\itemsep{0em}
-  \item Sam Kimbrel 
-  (\href{mailto:skimbrel@twilio.com}{skimbrel@twilio.com})
-  \item Evan Fossier
-  (\href{mailto:evan.fossier@gmail.com}{evan.fossier@gmail.com})
-  \item Kyle Conroy
-  (\href{mailto:kyle.j.conroy@gmail.com}{kyle.j.conroy@gmail.com})
-  \item Shubham
-  (\href{mailto:tiwarishubham635@gmail.com}{tiwarishubham635@gmail.com})
+  \item \textbf{Desarrolladores}: Responsables del desarrollo
+  de la librería. Debido a la generación del código,
+  el proyecto no tiene ningún desarrollador trabajando en nuevas funciones.
+  Actualmente Shubham realiza el mantenimiento.
+  \item \textbf{Testers}: Debido a la generación de pruebas,
+  no hay un equipo específico de pruebas:
+  se realizan automáticamente para cada commit y pull request.
+  \item \textbf{Equipo de soporte}: Actualmente
+  Shubham responde a las Issues abiertas.
+  \item \textbf{Comunicadores}: Responsables de explicar el sistema
+  a otros participantes. Los desarrolladores en su momento
+  cumplieron este rol a través de la documentación que crearon.
+  Esta se completa con la documentación la API de Twilio,
+  escrita por un equipo externo a la librería.
+  \item \textbf{Usuarios}: Son desarrolladores que quieren
+  acceder programáticamente a la API de Twilio para usar sus servicios.
+  Por ejemplo, para añadir a una aplicación
+  la capacidad de verificar el número de teléfono de sus usuarios.
 \end{itemize}
-  
-El equipo es muy mínimo ya que la gran mayoría del código
-fue generado usando OpenAPI Generator
-\cite{twilio-generated-openapi}
-o la herramienta interna Yoyodyne
-\cite{twilio-generated-yoyodyne}.
-Tampoco hay un equipo dedicado de testers
-ya que se usan pruebas automáticas generadas también por esas herramientas.
-
-Actualmente parece
-que el único encargado de mantenimiento y soporte es Shubham,
-ya que es el único que ha contestado a Issues y hecho commits recientemente.
 
 \section{Vistas}
 
-\subsection{Vista de Contexto}
+\subsection{Vista de contexto}
 
 \hfill
 
-\begin{tikzpicture}
-  \node[minimum height=1.5cm,minimum width=3cm,draw, align=center](Twilio) at (0,0){\includegraphics[width=2cm]{logo.png}};
+TODO!
+\begin{figure}[H]
+  \begin{tikzpicture}
+    \node[minimum height=1.5cm,minimum width=3cm,draw, align=center](Twilio) at (0,0){\includegraphics[width=2cm]{logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Usuarios) at (2,4){\textbf{Usuarios} \\ Desarrolladores};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Usuarios) at (2,4){\textbf{Usuarios} \\ Desarrolladores};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Licencia) at (-2,4){\textbf{Licencia} \\ MIT License};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Licencia) at (-2,4){\textbf{Licencia} \\ MIT License};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administracion) at (5,3){\textbf{Administracion} \\
-  \textbf{del Proyecto}\\ \includegraphics[width=2cm]{github-logo.png}};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Administracion) at (5,3){\textbf{Administracion} \\
+    \textbf{del Proyecto}\\ \includegraphics[width=2cm]{github-logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrollo) at (-6,3){\textbf{Desarrollo} \\ \\ \includegraphics[width=2cm]{python-logo.png}};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrollo) at (-6,3){\textbf{Desarrollo} \\ \\ \includegraphics[width=2cm]{python-logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Generadores de codigo} \\ OpenAPI
-  \\ Yoyodyne};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Autogeneradores) at (-6,0){\textbf{Generadores de codigo} \\ OpenAPI
+    \\ Yoyodyne};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Competencia) at (5,0){\textbf{Competencia} \\ Plivo\\Bandwidth\\CallHippo};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Competencia) at (5,0){\textbf{Competencia} \\ Plivo\\Bandwidth\\CallHippo};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Dependencias) at (-6,-3){\textbf{Dependencias} \\ Aiohttp\\ 
-  PyJWT\\Django \\ Pytest};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Dependencias) at (-6,-3){\textbf{Dependencias} \\ Aiohttp\\ 
+    PyJWT\\Django \\ Pytest};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de Soporte) at (5,-3){\textbf{Herramientas de Soporte} \\ \includegraphics[width=2cm]{sonarcloud-logo.png}};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Herramientas de soporte) at (5,-3){\textbf{Herramientas de Soporte} \\ \includegraphics[width=2cm]{sonarcloud-logo.png}};
 
-  \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrolladores) at (-1,-4){\textbf{Desarrolladores} \\ Sam Kimbrel\\Evan Fossier\\Kyle Conroy\\Jingming Niu\\Ragil Prasetya};
+    \node[minimum height=2cm,minimum width=3cm,draw, align=center] (Desarrolladores) at (-1,-4){\textbf{Desarrolladores} \\ Sam Kimbrel\\Evan Fossier\\Kyle Conroy\\Jingming Niu\\Ragil Prasetya};
 
-  %TODO: Fechas de la vista de contexto
-  
-  
-\end{tikzpicture}  
+    %TODO: Fechas de la vista de contexto
 
-\hfill
 
-\subsection{Vista de Escenarios}
-
-\hfill
-
-\includegraphics{usecase.pdf}
+  \end{tikzpicture}  
+  \captionof{figure}{Vista de contexto}
+  \label{fig:vista contexto}
+\end{figure}
 
 \hfill
 
-\subsection{Vista de Despliegue}
+En la figura \ref{fig:vista contexto}
+se puede ver el entorno en el que existe la librería.
+
+El sistema se aloja en GitHub para el control de versiones
+y para manejar la integración contínua.
+Utiliza la licensia de código abierto MIT
+\cite{twilio-license},
+permitiendo a sus usuarios, otros desarolladores,
+usarla para propósitos comerciales sin requisitos.
+Para cada commit, GitHub Actions realiza pruebas
+usando las dependencias de prueba.
+
+Está desarrollado en Python.
+Como dependencias de ejecución tiene a pygments, requests, aiohttp y PyJWT
+\cite{twilio-runtime-dependencies}.
+Para las pruebas, utiliza
+mock, pytest, aiounittest, flake8,
+wheel, cryptography, recommonmark,
+django, multidict, pyngrok, black y autoflake
+\cite{twilio-test-dependencies}.
+
+Fue originalmente desarrollado por varias personas,
+incluyendo a Sam Kimbrell, Evan Fossier,
+Kyle Conroy, Jingming Niu y Ragil Prasetya,
+pero actualmente solo es mantenido por Shubham.
+
+
+\subsection{Vista de escenarios}
+
+
+\hfill
+
+\begin{figure}[H]
+  \includegraphics{usecase.pdf}
+  \captionof{figure}{Vista de escenarios}
+  \label{fig:vista escenarios}
+\end{figure}
+
+\hfill
+
+\subsection{Vista de despliegue}
 
 \hfill
 
@@ -330,7 +364,7 @@ dentro de un intérprete de Python (ej. CPython)
 en un ordenador que pueda conectarse a través de Internet
 a la API de Twilio.
 
-\subsection{Vista de Desarrollo}
+\subsection{Vista de desarrollo}
 
 \includegraphics{vista_desarrollo.pdf}
 
@@ -384,7 +418,7 @@ en todos los lenguajes para los que Twilio mantiene librerías oficiales.
 Algunos métodos de algunos recursos de \verb|rest|
 reciben parámetros de tipo \verb|TwiML|.
 
-\subsection{Vista Funcional}
+\subsection{Vista funcional}
 
 \subsubsection{ClientBase}
 
@@ -521,6 +555,13 @@ y, como el resto de clases de este módulo,
 son generadas para cada recurso por OpenAPI Generator
 \cite{twilio-generated-openapi}.
 
+\subsubsection{TwiML}
+
+TODO!
+
+\subsubsection{JWT}
+
+TODO!
 
 \section{Puntos de variabilidad y extensión}
 
@@ -701,6 +742,8 @@ y contestando a diversos issues abiertos
 \cite{contribución-wrong-login}.
 
 \section{Conclusiones}
+
+TODO!
 
 En este proyecto, hemos documentado la arquitectura de Twilio-Python, el cual es un módulo python para comunicarse con la API de Twilio y generar TwiML, desarrollado por Twilio, la cual es una empresa de comunicación estadounidense.\\
 Esta herramienta cuenta con un diseño basado en la arquitectura REST, que permite una gran paralelización y el caché de recursos, lo que resulta en un sistema fácil de escalar.\\
