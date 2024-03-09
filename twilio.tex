@@ -21,6 +21,7 @@
 \usepackage{tikz-uml}
 \usepackage{caption}
 \usepackage{listings}
+\usepackage{float}
 \usepackage{xcolor}
 \usetikzlibrary{babel}
 \usetikzlibrary{positioning}
@@ -227,28 +228,30 @@ para generar la mayoría del código relevante al uso de TwiML
 
 \section{Participantes}
 
-Los participantes más importante de Twilio Python que han trabajado en el proyecto son:
+Los participantes más importantes para el proyecto son:
 \begin{itemize}
-  \item Sam Kimbrel \href{mailto:skimbrel@twilio.com}{skimbrel@twilio.com}
-  \item Evan Fossier \href{mailto:evan.fossier@gmail.com}{evan.fossier@gmail.com}
-  \item Kyle Conroy \href{mailto:kyle.j.conroy@gmail.com}{kyle.j.conroy@gmail.com}
-  \item Jingming Niu 
-  \item Ragil Prasetya 
+  \setlength\itemsep{0em}
+  \item Sam Kimbrel 
+  (\href{mailto:skimbrel@twilio.com}{skimbrel@twilio.com})
+  \item Evan Fossier
+  (\href{mailto:evan.fossier@gmail.com}{evan.fossier@gmail.com})
+  \item Kyle Conroy
+  (\href{mailto:kyle.j.conroy@gmail.com}{kyle.j.conroy@gmail.com})
+  \item Shubham
+  (\href{mailto:tiwarishubham635@gmail.com}{tiwarishubham635@gmail.com})
+\end{itemize}
   
-  \end{itemize}
-  
+El equipo es muy mínimo ya que la gran mayoría del código
+fue generado usando OpenAPI Generator
+\cite{twilio-generated-openapi}
+o la herramienta interna Yoyodyne
+\cite{twilio-generated-yoyodyne}.
+Tampoco hay un equipo dedicado de testers
+ya que se usan pruebas automáticas generadas también por esas herramientas.
 
-
-  % Los participantes se pueden dividir en dos secciones principales, el equipo de desarrollo, que se ha encargado de hacer las funciones base que luego seran usadas por el codigo autogenerado y el equipo de soporte, que se encarga de mantener el codigo y resolver los issues de la comunidad.
-  % \\
-  % No existe un equipo de testers ya que los tests se generan de forma automatica.
-
-  % \subsection*{Desarrolladores}
-  % Son los responsables del desarrollo de las funciones base a partir de las cuales se autogenera el resto del codigo de la API.
-  % \subsection*{Testers}
-  % No hay un equipo dedicado al testing ya que todo los tests se generan automaticamente.
-  % \subsection*{Soporte}
-  % Se ocupan de mantener el código y resolver los issues de la comunidad, los más importantes son Kyle, revisa y acepta los pull request, y Ragil y Jing que  arreglan bugs y refactorizan el código
+Actualmente parece
+que el único encargado de mantenimiento y soporte es Shubham,
+ya que es el único que ha contestado a Issues y hecho commits recientemente.
 
 \section{Vistas}
 
@@ -285,15 +288,22 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
   
 \end{tikzpicture}  
 
+\hfill
+
 \subsection{Vista de Escenarios}
 
+\hfill
+
 \includegraphics{usecase.pdf}
+
+\hfill
 
 \subsection{Vista de Despliegue}
 
 \hfill
 
 
+\begin{figure}[H]
 \begin{tikzpicture}[node distance=2cm]
   \node [parallelepiped,draw=black,fill=white,minimum width=5.5cm,minimum height=5cm] (Ordenador) at (0,0) {};
   \node[align=center] at (1,1.9) {<<dispositivo>>\\ \textbf{Ordenador}};
@@ -310,6 +320,7 @@ Los participantes más importante de Twilio Python que han trabajado en el proye
 \end{tikzpicture}
 \captionof{figure}{Vista de despliegue}
 \label{fig:vista de despliegue}
+\end{figure}
 
 \hfill
 
@@ -375,6 +386,8 @@ reciben parámetros de tipo \verb|TwiML|.
 
 \subsection{Vista Funcional}
 
+\subsubsection{ClientBase}
+
 \hfill
 
 \begin{center}
@@ -385,6 +398,46 @@ reciben parámetros de tipo \verb|TwiML|.
 
 \hfill
 
+La figura \ref{fig:vista funcional clientbase}
+explica las dependencias funcionales de
+la clase abstracta \verb|ClientBase|,
+del módulo \verb|base|.
+Utiliza el método \verb|request|
+de la clase abstracta \verb|HttpClient|
+(del módulo \verb|http|)
+y provee su propio método \verb|request|,
+un envoltorio que establece las cabeceras HTTP necesarias para la autenticación.
+En su constructor se puede definir cuál de los clientes HTTP usar.
+El cliente \verb|ValidationHttpClient|
+utiliza los métodos de la clase \verb|Jwt|
+(del módulo \verb|jwt|)
+para firmar y encriptar el JSON del cuerpo
+de las peticiones HTTP realizadas.
+
+\subsubsection{Client}
+
+\hfill
+
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{VistaFuncionalCliente.pdf}
+  \captionof{figure}{Vista funcional (Client)}
+  \label{fig:vista funcional client}
+\end{center}
+
+\hfill
+
+La figura \ref{fig:vista funcional client}
+muestra como la clase \verb|Client|
+(del módulo \verb|rest|)
+expande la clase \verb|ClientBase|.
+OpenAPI Generator genera esta clase
+\cite{twilio-generated-openapi} TODO!.
+Añade como parámetros a todas las clases
+que representan los dominios de la API de Twilio,
+que a su vez heredan de \verb|Domain|
+(una clase abstracta vacía del módulo \verb|base|).
+
+\subsubsection{Dominio}
 
 \hfill
 
@@ -406,21 +459,67 @@ La clase \verb|ConversationsBase| únicamente almacena la URL del dominio
 y una referencia a cada versión de la API
 (en este caso, solo \verb|V1|).
 
-La clase abstracta \verb|Version|
+La clase abstracta vacía \verb|Version|
 ofrece un envoltorio para el método \verb|request| de su \verb|Client|,
 que toma como parámetro una URI relativa a la versión
 (\verb|conversations.twilio.com/v1|)
 y la realiza.
-Contiene una propiedad por cada recurso que contiene el dominio.
-Los diversos recursos llaman a la función \verb|request| de la versión
-pasando como parámetro su URI relativa a ella, que almacenan (ej. \verb|/User|).
-Para \verb|UserList|,
-llamarla resulta en una petición a \verb|conversations.twilio.com/v1/User|.
-Usando esto, permiten crear una instancia del recurso,
+
+Las clases para cada dominio y todas sus versiones
+son generadas para cada recurso por OpenAPI Generator
+\cite{twilio-generated-openapi}.
+
+\subsubsection{Recurso}
+
+\hfill
+
+\begin{center}
+  \includegraphics[width=\textwidth]{VistaFuncionalRecurso.pdf}
+  \captionof{figure}{Vista funcional (Recurso)}
+  \label{fig:vista funcional recurso}
+\end{center}
+
+\hfill
+
+La figura \ref{fig:vista funcional recurso}
+muestra la estructura de todos los recursos
+usando al recurso \verb|user| como ejemplo.
+La versión contiene a \verb|UserList|,
+que representa a todos los usuarios.
+Esta clase solo almacena la URI del recurso relativa a la versión
+(ej. \verb|/User|).
+Llamando la función \verb|request| de la versión
+(que es un envoltorio para la de \verb|Client|)
+pasando como parámetro su URI relativa
+puede realizar peticiones a la URL correcta
+(ej. \verb|conversations.twilio.com/v1/User|).
+Usando esto permite crear una instancia del recurso,
 obtener una instancia del recurso,
 u obtener todas las instancias
-en formato de lista, de lista paginada o de \verb|stream|.
+como lista, como \verb|stream| o como lista paginada
+(usando a \verb|UserPage|).
 
+Cada instancia individual es de la clase \verb|UserInstance|.
+Contiene los datos de la instancia
+y permite actualizar la instancia o borrarla
+a través de funciones que redirigen a \verb|UserContext|.
+\verb|UserContext| contiene la URI del recurso relativa a la versión
+(ej. \verb|/User|)
+y llama a la función \verb|request| de la versión,
+idénticamente a \verb|UserList|.
+
+\verb|UserInstance|, \verb|UserContext| y \verb|UserList|
+heredan de las clases abstractas vacías
+(del módulo \verb|base|)
+\verb|InstanceResource|, \verb|InstanceContext| y \verb|ListResource|
+respectivamente.
+\verb|UserPage| hereda de la clase abstracta
+\verb|Page| (también del módulo \verb|base|)
+que contiene la lógica para paginar.
+Las cuatro clases no abstractas son del módulo \verb|rest|
+y, como el resto de clases de este módulo,
+son generadas para cada recurso por OpenAPI Generator
+\cite{twilio-generated-openapi}.
 
 
 \section{Puntos de variabilidad y extensión}
@@ -445,7 +544,8 @@ En el paquete \verb|base| se definen numerosas clases abstractas:
 \verb|Version| representa una versión de la API para ese dominio,
 \verb|InstanceContext| representa la URI para una instancia de un recurso,
 \verb|InstanceResource| representa una instancia de un recurso,
-y \verb|ListResource| representa una lista de instancias de un recurso.
+\verb|ListResource| representa una lista de instancias de un recurso
+y \verb|Page| tiene la lógica para paginar dicha lista.
 
 El paquete \verb|rest| define herederos concretos a las clases abstractas
 del paquete \verb|base|, pero no contiene ningún punto de extensión.
@@ -475,7 +575,33 @@ el proceso está documentado
 
 \subsection{Mantenibilidad}
 
+La mantenibilidad es muy alta.
+Casi todo el código, junto con sus pruebas,
+es generado por OpenAPI Generator
+\cite{twilio-generated-openapi}
+o la herramienta interna Yoyodyne
+\cite{twilio-generated-yoyodyne}.
+La cantidad de código que hay de mantener manualmente es muy baja:
+solo los módulos \verb|base|, \verb|http| y \verb|jwt|.
+
+Por ejemplo,
+si Twilio añadiese un nuevo dominio con muchos nuevos recursos a su API,
+no se tendría que hacer ningún cambio manual a la librería.
+OpenAPI Generator añadiría las clases necesarias
+y crearía las pruebas para verificar que funciona.
+Lo mismo pasaría con Yoyodyne si se añadiesen etiquetas a TwiML,
+aunque para TwiML las pruebas son escritas a mano
+\cite{twilio-twiml-manual-tests}.
+Solo sería necesario hacer cambios manuales si hace falta actualizar
+un cliente HTTP o la encripción JWT.
+
+
 \subsection{Fiabilidad}
+
+La fiabilidad también es muy alta
+debido a la covertura de pruebas del 100\%
+que se obtiene gracias a las pruebas generadas por OpenAPI Generator
+y al trabajo manual para el resto de clases.
 
 \subsection{Securidad}
 
@@ -524,9 +650,39 @@ sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
 
 \subsection{Usabilidad}
 
+La API tiene una documentación excelente independiente del lenguaje.
+Aunque hay muchos ejemplos en todos los lenguajes soportados oficialmente,
+hay muchas cosas que no están documentadas 
+en ningún lenguaje de programación,
+sino solamente en general.
+
+Hay documentación para cada lenguaje,
+incluyendo para Python,
+a un nivel bastante general.
+Sin embargo, no hay para la mayoría de recursos.
+Entre la información general
+y las sugerencias que aportan los editores de código modernos
+se puede realizar el código sin muchos problemas,
+(ej. al escribir \verb|client.conversations.v1.conversation.|
+se sugieren los métodos
+\verb|list()|, \verb|stream()|, \verb|create()|, etc.)
+Pero, en general, la documentación es muy incompleta.
+
+
 \section{Sugerencias de mejora}
-En general el funcionamiento de la API es impecable debido a la generación del código, sin embargo pensamos que la documentación que aportan es bastante escueta y aporta pocos ejemplos prácticos para ayudar a nuevos usuarios a aprender a usar esta herramienta. Esto se debe a que gran parte de la documentación también es generada automáticamente.
-Como sugerencia de mejora pensamos que seria buena idea añadir una documentación mas extensa, con mas ejemplos y casos de uso distintos.
+
+En general el funcionamiento de la API es impecable
+debido a la generación del código,
+y tiene un 100\% de cobertura por pruebas
+ya que la gran mayoría de pruebas son generadas automáticamente.
+Sin embargo pensamos que la documentación que aportan es insuficiente
+y que aporta pocos ejemplos prácticos.
+Esto se debe a que no se genera la documentación automáticamente,
+y a que no se han asignado los recursos para hacerla más clara
+para todos los lenguajes para los que Twilio mantiene librerías.
+Como sugerencia de mejora
+pensamos que se debería extender la documentación
+con más ejemplos y casos de uso.
 
 \section{Contribuciones al proyecto}
 
