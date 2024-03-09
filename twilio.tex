@@ -108,7 +108,7 @@
 \title{%
   Twilio Python \\
   \large A Python module for communicating with \\
-  the Twilio API and generating TwiML} 
+  the Twilio API and generating TwiML TODO!} 
 
 
 
@@ -729,13 +729,24 @@ y contestando a diversos issues abiertos
 
 \section{Conclusiones}
 
-TODO!
+En resumen,
+Twilio mantiene una API siguiendo el estilo arquitectónico REST
+documentada en la especificación OpenAPI.
+OpenAPI Generator, usando esta documentación,
+genera la mayoría del código junto con sus pruebas.
+Debido a esto,
+twilio-python es completa, segura, mantenible y fiable:
+si se actualiza la API
+se puede actualizar la librería
+y verificar que funciona sin intervención humana.
+Debido al esfuerzo mínimo que toma mantenerla
+y a su respaldo oficial,
+la librería se puede usarse sin miedo a que se abandonada.
 
-En este proyecto, hemos documentado la arquitectura de Twilio-Python, el cual es un módulo python para comunicarse con la API de Twilio y generar TwiML, desarrollado por Twilio, la cual es una empresa de comunicación estadounidense.\\
-Esta herramienta cuenta con un diseño basado en la arquitectura REST, que permite una gran paralelización y el caché de recursos, lo que resulta en un sistema fácil de escalar.\\
-Además, gracias al estándar OpenAPI, sólo tienen que implementar una pequeña lógica, ya que sobre esa base se autogenera todo el código, lo que hace que la mantenibilidad de este sea excepcional.\\
-Sin embargo, hay algunas cuestiones mejorables como la documentación, la cual es bastante escasa, ya que sólo proveen documentación de cómo crear un cliente en cada lenguaje y casos de usos básicos. \\
-La forma en la que nosotros hemos contribuido con Twilio-Python ha sido traduciendo al español la documentación de cómo usar la API y respondiendo algunos de los issues abiertos.
+Sin embargo, su usabilidad es mejorable
+debido a la falta de documentación específica a Python.
+Aún así, sigue siendo alta debido a la documentación de la API
+y a las sugerencias de los editores modernos.
 
 \newpage
 
