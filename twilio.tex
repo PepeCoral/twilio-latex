@@ -321,16 +321,25 @@ pero actualmente solo es mantenido por Shubham.
 
 \subsection{Vista de escenarios}
 
-
 \hfill
 
-\begin{figure}[H]
+\begin{center}
   \includegraphics{usecase.pdf}
   \captionof{figure}{Vista de escenarios}
   \label{fig:vista escenarios}
-\end{figure}
+\end{center}
 
 \hfill
+
+Toda acción que el usuario quiera realizar,
+ya sea adquirir un número de teléfono,
+realizar una llamada,
+enviar un correo electrónico,
+o cualquier otro,
+se consigue con una petición HTTP
+a uno de los recursos de la API de Twilio.
+Esta se realiza llamando al método correspondiente
+de las clases que representan los recursos de la librería.
 
 \subsection{Vista de despliegue}
 
