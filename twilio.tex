@@ -566,11 +566,21 @@ son generadas para cada recurso por OpenAPI Generator
 
 \subsubsection{TwiML}
 
-TODO!
+\begin{center}
+  \includegraphics[width=0.65\textwidth]{VistaFuncionalTwiML.pdf}
+  \captionof{figure}{Vista funcional (twiml)}
+  \label{fig:vista funcional twiml}
+\end{center}
 
-\subsubsection{JWT}
+En la figura \ref{fig:vista funcional twiml}
+se puede ver la estructura del módulo \verb|twiml|.
+La clase abstracta \verb|TwiML| representa un tipo de etiqueta,
+y tiene la capacidad de contener más etiquetas dentro.
+De esta manera, una etiqueta raíz
+representa todo un documento XML con etiquetas de TwiML.
+Todos los tipos de etiqueta heredan de \verb|TwiML|.
 
-TODO!
+
 
 \section{Puntos de variabilidad y extensión}
 
