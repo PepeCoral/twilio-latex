@@ -23,6 +23,7 @@
 \usepackage{listings}
 \usepackage{float}
 \usepackage{xcolor}
+\usepackage{microtype}
 \usetikzlibrary{babel}
 \usetikzlibrary{positioning}
 
@@ -106,9 +107,9 @@
 \font\nullfont=cmr10
 
 \title{%
-  Twilio Python \\
-  \large A Python module for communicating with \\
-  the Twilio API and generating TwiML TODO!} 
+  \Huge Análisis de twilio-python\\
+  \LARGE la librería envoltorio de la API de Twilio
+  } 
 
 
 
@@ -123,6 +124,7 @@ Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 
 \begin{titlepage}
   \centering
+  \hfill
   \vfil
   {\bfseries\Large
       \thetitle
@@ -140,7 +142,7 @@ Javier Ignacio Milá de la Roca Dos Santos (javmildos@alum.us.es) \\}
 \section{Introducción}
 
 Twilio es una compañía que ofrece distintos servicios
-de manejos de datos de clientes y comunicación.
+de manejo de datos de clientes y comunicación.
 Provee una API HTTP a través de la cual se pueden realizar llamadas telefónicas,
 enviar correos, mensajes SMS, mensajes de WhatsApp, etc.
 
@@ -148,12 +150,11 @@ Twilio también define TwiML,
 un documento XML con tags especiales
 para poder definir cómo responder a llamadas y mensajes recibidos.
 
-También mantiene librerías oficiales para numerosos lenguajes de programación
+Mantiene librerías oficiales para numerosos lenguajes de programación
 que sirven como envoltorios para su API,
 ofreciendo una manera idiomática de enviar peticiones.
 Este documento sirve como una documentación de la arquitectura
-de una de esas librerías:
-\href{https://github.com/twilio/twilio-python}{twilio-python}.
+de una de esas librerías: twilio-python \cite{twilio-python}.
 
 
 \section{Visión general}
@@ -170,31 +171,31 @@ Por ejemplo, para crear un mensaje se enviaría una petición
 de tipo \verb|POST|
 a \verb|https://conversations.twilio.com/v1/Conversations/Messages|.
 
-El uso de twilio-python permite evitar crear peticiones HTTP directamente,
+El uso de twilio-python permite evitar escribir peticiones HTTP directamente,
 ofreciendo en su lugar una abstracción idiomática.
 
 \hfill
 
-El uso de la librería, se centra al rededor de la clase \verb|Client|.
+El uso de la librería se centra al rededor de la clase \verb|Client|.
 El usuario construye esta clase
 y a través de ella accede a todos los recursos que provee la API de Twilio.
-Se configura al instanciarla con los parámetros opcionales del constructor,
+Se configura al instanciarla con los argumentos opcionales del constructor,
 incluyendo el cliente HTTP que usa.
 
 \verb|Client| tiene como parámetros los diversos dominios de Twilio
-(ej. \verb|conversations|)
-con sus versiones (ej. \verb|V1|)
+(ej. \verb|conversations|),
+que contienen sus versiones (ej. \verb|V1|)
 que a su vez contienen sus recursos
 (ej. \verb|Conversations|, \verb|Messages|)
-y funciones correspondientes con realizar peticiones
-a sus respectivas URIs.
+que tienen métodos que realizan peticiones a sus respectivas URIs.
 Llamar a la función:
-\\ \hspace*{1em} \verb|client.conversations.v1.conversations.messages.create()|
+\\ \hspace*{1em} \verb|client.conversations.v1.conversations.create()|
 \\hace que el \verb|Client|
 use su cliente HTTP para enviar una petición \verb|POST| a:
-\\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations/Messages|
+\\ \hspace*{1em} \verb|https://conversations.twilio.com/v1/Conversations|
 
-\section{Generación de código}
+
+\subsection*{Generación de código}
 
 La API de Twilio está documentada
 de acuerdo a la especificación OpenAPI
@@ -202,10 +203,9 @@ de acuerdo a la especificación OpenAPI
 \cite{twilio-openapi-repo}.
 Esta especificación establece un formato
 con el que el proveedor de la API
-puede informar de su estructura:
-tanto la del cuerpo esperado
-como la de la respuesta
-para cada tipo de petición permitida
+puede informar de la estructura
+del cuerpo esperado de la petición
+y de la respuesta
 para todos los recursos ofrecidos.
 
 Twilio usa la herramienta OpenAPI Generator
@@ -213,11 +213,11 @@ Twilio usa la herramienta OpenAPI Generator
 Esta herramienta usa la documentación en el estandar OpenAPI
 para generar automáticamente todo el código relevante.
 Esto incluye las clases que representan los dominos,
-los recursos, las instancias de los recursos,
-y sus métodos.
+los recursos, las instancias de los recursos, sus métodos
+y sus pruebas.
 
 Twilio también usa una herramienta interna llamada Yoyodyne
-para generar la mayoría del código relevante al uso de TwiML
+para generar la mayoría del código respectivo al uso de TwiML
 \cite{twilio-generated-yoyodyne}.
 
 
@@ -237,7 +237,7 @@ El grupo tiene las siguientes categorías de participantes:
   \item \textbf{Equipo de soporte}: Actualmente
   Shubham responde a las Issues abiertas.
   \item \textbf{Comunicadores}: Responsables de explicar el sistema
-  a otros participantes. Los desarrolladores en su momento
+  a otros participantes. Los desarro-lladores en su momento
   cumplieron este rol a través de la documentación que crearon.
   Esta se completa con la documentación la API de Twilio,
   escrita por un equipo externo a la librería.
@@ -259,6 +259,8 @@ El grupo tiene las siguientes categorías de participantes:
   \label{fig:vista contexto}
 \end{center}
 
+\hfill
+
 En la figura \ref{fig:vista contexto}
 se puede ver el entorno en el que existe la librería.
 
@@ -266,7 +268,7 @@ El sistema se aloja en GitHub para el control de versiones
 y para manejar la integración contínua.
 Utiliza la licensia de código abierto MIT
 \cite{twilio-license},
-permitiendo a sus usuarios, otros desarolladores,
+permitiendo a sus usuarios (a desarrolladores)
 usarla para propósitos comerciales sin requisitos.
 Para cada commit, GitHub Actions realiza pruebas
 usando las dependencias de prueba.
@@ -285,6 +287,7 @@ incluyendo a Sam Kimbrell, Evan Fossier,
 Kyle Conroy, Jingming Niu y Ragil Prasetya,
 pero actualmente solo es mantenido por Shubham.
 
+\newpage
 
 \subsection{Vista de escenarios}
 
@@ -298,20 +301,21 @@ pero actualmente solo es mantenido por Shubham.
 
 \hfill
 
-Toda acción que el usuario quiera realizar,
-ya sea adquirir un número de teléfono,
+La figura \ref{fig:vista escenarios}
+muestra los casos de uso de la librería.
+Toda acción que el usuario quiera realizar
+(ya sea adquirir un número de teléfono,
 realizar una llamada,
-enviar un correo electrónico,
-o cualquier otro,
+enviar un correo electrónico, etc.)
 se consigue con una petición HTTP
 a uno de los recursos de la API de Twilio.
-Esta se realiza llamando al método correspondiente
-de las clases que representan los recursos de la librería.
+Para mandar estas peticiónes
+se llaman a los métodos correspondientes
+de las clases que representan los recursos de la API.
 
 \subsection{Vista de despliegue}
 
 \hfill
-
 
 \begin{figure}[H]
 \begin{tikzpicture}[node distance=2cm]
@@ -334,7 +338,7 @@ de las clases que representan los recursos de la librería.
 
 \hfill
 
-La figura \ref{fig:vista funcional clientbase}
+La figura \ref{fig:vista de despliegue}
 muestra el entorno en el que se ha de ejecutar la librería:
 dentro de un intérprete de Python (ej. CPython)
 en un ordenador que pueda conectarse a través de Internet
@@ -344,12 +348,13 @@ a la API de Twilio.
 
 \includegraphics{vista_desarrollo.pdf}
 
-La librería está dividida en 5 módulos.
+La librería está dividida en 5 módulos:
 
 \hfill
 
 El módulo \verb|http| contiene diversos clientes HTTP.
-Entre otros, contiene con validación usando JSON Web Tokens (JWT).
+Entre otros,
+contiene uno con validación usando JSON Web Tokens (JWT).
 Estos permiten enviar JSONs con firma y opcionalmente encripción,
 y su lógica está definida en el módulo \verb|jwt|.
 
@@ -359,12 +364,13 @@ El módulo \verb|base| contiene
 la lógica que usa \verb|Client|,
 la clase central de la librería,
 en la clase \verb|ClientBase|.
-Su constructor permite configurarla,
-y contiene la lógica para 
+Su constructor permite realizar
+toda la configuración de la librería.
+También contiene la lógica para 
 crear las cabeceras de las peticiones HTTP
 con la información necesaria para autenticarlas.
 
-También contiene las clases abstractas
+El módulo también contiene las clases abstractas
 para representar dominios,
 las versiónes de la API que se pueden usar para un dominio
 y los recursos que los dominios contienen.
@@ -389,10 +395,11 @@ que representa una etiqueta XML.
 Esta clase es extendida
 con clases que representan los tipos de etiquetas especiales de TwiML.
 Estas son generadas por la herramienta interna Yoyodyne
-\cite{twilio-generated-yoyodyne},
-en todos los lenguajes para los que Twilio mantiene librerías oficiales.
+\cite{twilio-generated-yoyodyne}.
 Algunos métodos de algunos recursos de \verb|rest|
 reciben parámetros de tipo \verb|TwiML|.
+
+\newpage
 
 \subsection{Vista funcional}
 
@@ -401,7 +408,7 @@ reciben parámetros de tipo \verb|TwiML|.
 \hfill
 
 \begin{center}
-  \includegraphics[width=\textwidth]{VistaFuncionalClienteBase.pdf}
+  \includegraphics[width=0.9\textwidth]{VistaFuncionalClienteBase.pdf}
   \captionof{figure}{Vista funcional de ClientBase}
   \label{fig:vista funcional clientbase}
 \end{center}
@@ -429,7 +436,7 @@ de las peticiones HTTP realizadas.
 \hfill
 
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{VistaFuncionalCliente.pdf}
+  \includegraphics[width=0.7\textwidth]{VistaFuncionalCliente.pdf}
   \captionof{figure}{Vista funcional (Client)}
   \label{fig:vista funcional client}
 \end{center}
@@ -469,7 +476,7 @@ La clase \verb|ConversationsBase| únicamente almacena la URL del dominio
 y una referencia a cada versión de la API
 (en este caso, solo \verb|V1|).
 
-La clase abstracta vacía \verb|Version|
+La clase abstracta \verb|Version|
 ofrece un envoltorio para el método \verb|request| de su \verb|Client|,
 que toma como parámetro una URI relativa a la versión
 (\verb|conversations.twilio.com/v1|)
@@ -478,6 +485,8 @@ y la realiza.
 Las clases para cada dominio y todas sus versiones
 son generadas para cada recurso por OpenAPI Generator
 \cite{twilio-generated-openapi}.
+
+\newpage
 
 \subsubsection{Recurso}
 
@@ -541,7 +550,7 @@ son generadas para cada recurso por OpenAPI Generator
 
 En la figura \ref{fig:vista funcional twiml}
 se puede ver la estructura del módulo \verb|twiml|.
-La clase abstracta \verb|TwiML| representa un tipo de etiqueta,
+La clase abstracta \verb|TwiML| representa un tipo de etiqueta
 y tiene la capacidad de contener más etiquetas dentro.
 De esta manera, una etiqueta raíz
 representa todo un documento XML con etiquetas de TwiML.
@@ -593,7 +602,7 @@ Finalmente, se puede especificar el tipo de cliente HTTP que usa.
 La librería ofrece tres clientes:
 \verb|TwilioHttpClient|, el cliente síncrono por defecto,
 \verb|AsyncTwilioHttpClient|, un cliente asíncrono, y
-\verb|ValidationClient|, un cliente síncrono que usa encripción jwt.
+\verb|ValidationClient|, un cliente síncrono que usa encripción JWT.
 Si un usuario de la librería necesitase crear un nuevo cliente,
 el proceso está documentado
 \cite{crear-cliente-http}.
@@ -608,18 +617,18 @@ es generado por OpenAPI Generator
 \cite{twilio-generated-openapi}
 o la herramienta interna Yoyodyne
 \cite{twilio-generated-yoyodyne}.
-La cantidad de código que hay de mantener manualmente es muy baja:
+La cantidad de código que ha de ser mantenido manualmente es muy baja:
 solo los módulos \verb|base|, \verb|http| y \verb|jwt|.
 
 Por ejemplo,
 si Twilio añadiese un nuevo dominio con muchos nuevos recursos a su API,
 no se tendría que hacer ningún cambio manual a la librería.
 OpenAPI Generator añadiría las clases necesarias
-y crearía las pruebas para verificar que funciona.
+y crearía las pruebas para verificar que funcionan.
 Lo mismo pasaría con Yoyodyne si se añadiesen etiquetas a TwiML,
 aunque para TwiML las pruebas son escritas a mano
 \cite{twilio-twiml-manual-tests}.
-Solo sería necesario hacer cambios manuales si hace falta actualizar
+Solo sería necesario hacer cambios manuales si hiciera falta actualizar
 un cliente HTTP o la encripción JWT.
 
 
@@ -639,12 +648,16 @@ por lo que consideramos que la librería no tiene ningún problema de seguridad.
 
 \hfill
 
-SonarCloud ve que la función \verb|jwt_lib.get_unverified_header|
+En \verb|/twilio/jwt/__init__.py|,
+SonarCloud detecta que la función
+\verb|get_unverified_header|
 da acceso al contenido del JSON codificado sin verificarlo
 y lo identifica como una vulnerabilidad.
 
 \begin{lstlisting}[language=Python]
 headers = jwt_lib.get_unverified_header(jwt)
+#                 ^^^^^^^^^^^^^^^^^^^^^
+# Problema de seguridad detectado
 
 alg = headers.get(alg)
 if alg != cls.ALGORITHM: # cls.ALGORITHM = "HS256"
@@ -664,6 +677,7 @@ Se accede al contenido de manera segura.
 
 \hfill
 
+En \verb|/twilio/request_validator.py|,
 SonarCloud también reconoce la llamada al algoritmo SHA1,
 que es inseguro \cite{sha1-broken},
 como una posible vulnerabilidad.
@@ -674,6 +688,8 @@ mac = hmac.new(self.token, s.encode("utf-8"), sha1)
 
 Sin embargo, no usa el algoritmo SHA1
 sino el HMAC-SHA1, que sigue siendo seguro \cite{hmac-sha1}.
+
+\newpage
 
 \subsection{Usabilidad}
 
@@ -686,25 +702,25 @@ sino solamente en general.
 Hay documentación para cada lenguaje,
 incluyendo para Python,
 a un nivel bastante general.
-Sin embargo, no hay para la mayoría de recursos.
+Sin embargo, no hay para la mayoría de recursos de la API.
 Entre la información general
 y las sugerencias que aportan los editores de código modernos
-se puede realizar el código sin muchos problemas,
+se puede escribir código que use la librería sin mayor problema
 (ej. al escribir \verb|client.conversations.v1.conversation.|
 se sugieren los métodos
-\verb|list()|, \verb|stream()|, \verb|create()|, etc.)
-Pero, en general, la documentación es muy incompleta.
+\verb|list()|, \verb|stream()|, \verb|create()|, etc.).
+Sin embargo, en general, la documentación está incompleta.
 
 
 \section{Sugerencias de mejora}
 
-En general el funcionamiento de la API es impecable
-debido a la generación del código,
-y tiene un 100\% de cobertura por pruebas
+En general el funcionamiento de la librería es impecable
+debido a la generación del código.
+Consigue un 100\% de cobertura de pruebas
 ya que la gran mayoría de pruebas son generadas automáticamente.
 Sin embargo pensamos que la documentación que aportan es insuficiente
 y que aporta pocos ejemplos prácticos.
-Esto se debe a que no se genera la documentación automáticamente,
+Esto se debe a que no se genera la documentación automáticamente
 y a que no se han asignado los recursos para hacerla más clara
 para todos los lenguajes para los que Twilio mantiene librerías.
 Como sugerencia de mejora
@@ -715,12 +731,12 @@ con más ejemplos y casos de uso.
 
 Debido a lo robusta y fiable que es la librería,
 no hemos encontrado ningún error en el código que se pueda arreglar.
-La parte del código generada por OpenAPI-Generator
+La parte del código generada por OpenAPI Generator
 tiene una estructura confusa,
 pero únicamente puede ser ajustada por empleados de Twilio \cite{contributing}.
 
 Hemos contribuído haciendo un pull request
-traduciendo el \verb|README.md| al español
+traduciendo el \verb|README.md| al español TODO!
 \cite{contribución-readme}
 y contestando a diversos issues abiertos
 \cite{contribución-repeated-code}
@@ -741,7 +757,7 @@ se puede actualizar la librería
 y verificar que funciona sin intervención humana.
 Debido al esfuerzo mínimo que toma mantenerla
 y a su respaldo oficial,
-la librería se puede usarse sin miedo a que se abandonada.
+la librería se puede usar sin miedo a que se abandone.
 
 Sin embargo, su usabilidad es mejorable
 debido a la falta de documentación específica a Python.
