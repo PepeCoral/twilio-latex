@@ -252,6 +252,7 @@ El grupo tiene las siguientes categorías de participantes:
 \end{itemize}
 
 \section{Vistas}
+Una vista es una representación parcial de algún aspecto concreto de una arquitectura.
 
 \subsection{Vista de contexto}
 
@@ -276,8 +277,10 @@ permitiendo a sus usuarios (a desarrolladores)
 usarla para propósitos comerciales sin requisitos.
 Para cada commit, GitHub Actions realiza pruebas
 usando las dependencias de prueba.
-Además, hace uso de la herramienta SonarCloud para llevar un registro de la calidad del código. Aborda aspectos como son la seguridad, bugs, mantenibilidad, issues sobre dichos aspectos y muchas otras funcionalidades.
 
+
+Usa OpenAPI Generator para generar gran parte de su código, para facilitar su mantenibilidad y la creación de pruebas.
+Además, hace uso de la herramienta SonarCloud para llevar un registro de la calidad del código. Aborda aspectos como son la seguridad, los bugs, la mantenibilidad, los issues sobre dichos aspectos y muchas otros.
 
 Está desarrollado en Python.
 Como dependencias de ejecución tiene a pygments, requests, aiohttp y PyJWT
@@ -346,7 +349,7 @@ de las clases que representan los recursos de la API.
 
 La figura \ref{fig:vista de despliegue}
 muestra el entorno en el que se ha de ejecutar la librería:
-dentro de un intérprete de Python (ej. CPython)
+dentro de un intérprete de Python (versiones 3.7 -- 3.11)
 en un ordenador que pueda conectarse a través de Internet
 a la API de Twilio.
 
@@ -435,7 +438,7 @@ El cliente \verb|ValidationHttpClient|
 utiliza los métodos de la clase \verb|Jwt|
 (del módulo \verb|jwt|)
 para firmar y encriptar el JSON del cuerpo
-de las peticiones HTTP realizadas.
+de las peticiones HTTP realizadas. Permite a Twilio validar que las peticiones no han sido manipuladas.
 
 \subsubsection{Client}
 
